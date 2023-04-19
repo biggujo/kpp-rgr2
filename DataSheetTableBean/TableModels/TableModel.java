@@ -1,9 +1,11 @@
 package DataSheetTableBean.TableModels;
 
+import DataSheetTableBean.DataSheet.Data;
 import DataSheetTableBean.DataSheet.DataSheet;
 
 import javax.swing.table.AbstractTableModel;
 import java.io.Serial;
+import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
 
@@ -18,24 +20,30 @@ public class TableModel extends AbstractTableModel {
 
     public TableModel() {
         columnCount = 3;
-        rowCount = 1;
-        dataSheet = null;
+        rowCount = 0;
+        dataSheet = new DataSheet();
+    }
+
+    public void add(Data data) {
+        this.dataSheet.add(data);
+        rowCount += 1;
     }
 
     @Override
     public int getRowCount() {
-        return 0;
+        return rowCount;
     }
 
     @Override
     public int getColumnCount() {
-        return 0;
+        return columnCount;
     }
 
     @Override
     public String getColumnName(int column) {
         return columnNames[column];
     }
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex >= 0;
@@ -56,7 +64,8 @@ public class TableModel extends AbstractTableModel {
                     dataSheet.getData(rowIndex).setY(d);
                 }
             }
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+        }
     }
 
     @Override
