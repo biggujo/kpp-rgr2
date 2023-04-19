@@ -34,6 +34,6 @@ public class DataSheet {
     }
 
     public int size() {
-        return this.dataArrayList.size();
+        return dataArrayList.size();
     }
 }
