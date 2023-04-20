@@ -25,4 +25,12 @@ public class ButtonPanel extends JPanel {
     public JPanel getPanel() {
         return panel;
     }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getDelButton() {
+        return delButton;
+    }
 }
