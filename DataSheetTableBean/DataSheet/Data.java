@@ -7,6 +7,7 @@ public class Data implements Comparable {
     private Point2D point2D;
 
     public Data() {
+        this("", 0, 0);
     }
 
     public Data(String index, double x, double y) {

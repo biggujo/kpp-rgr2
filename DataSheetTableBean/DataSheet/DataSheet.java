@@ -17,6 +17,22 @@ public class DataSheet {
         dataArrayList.add(data);
     }
 
+    public void remove(int index) {
+        try {
+            dataArrayList.remove(index);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void remove(Data data) {
+        try {
+            dataArrayList.remove(data);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Data getData(int index) throws ArrayIndexOutOfBoundsException {
         return dataArrayList.get(index);
     }
