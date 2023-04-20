@@ -31,13 +31,13 @@ public class DataSheetXMLSaver {
             document = documentBuilder.newDocument();
             document.setXmlStandalone(true);
 
-            // Create <function>
-            Element outputElement = document.createElement("function");
+            // Create <data>
+            Element outputElement = document.createElement("data");
             document.appendChild(outputElement);
 
             ArrayList<Data> dataArrayList = dataSheet.getDataArrayList();
             for (Data d : dataArrayList) {
-                Element dataElement = document.createElement("data");
+                Element dataElement = document.createElement("record");
                 outputElement.appendChild(dataElement);
 
                 Element indexElement = document.createElement("index");
