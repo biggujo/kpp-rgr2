@@ -36,4 +36,8 @@ public class DataSheet {
     public int size() {
         return dataArrayList.size();
     }
+
+    public void sort() {
+        this.dataArrayList.sort(Data::compareTo);
+    }
 }

@@ -5,7 +5,6 @@ import DataSheetTableBean.DataSheet.DataSheet;
 
 import javax.swing.table.AbstractTableModel;
 import java.io.Serial;
-import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
 
@@ -55,7 +54,7 @@ public class TableModel extends AbstractTableModel {
             double d;
             if (dataSheet != null) {
                 if (columnIndex == 0) {
-                    dataSheet.getData(rowIndex).setDate((String) value);
+                    dataSheet.getData(rowIndex).setIndex((String) value);
                 } else if (columnIndex == 1) {
                     d = Double.parseDouble((String) value);
                     dataSheet.getData(rowIndex).setX(d);
@@ -72,7 +71,7 @@ public class TableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (dataSheet != null) {
             if (columnIndex == 0)
-                return dataSheet.getData(rowIndex).getDate();
+                return dataSheet.getData(rowIndex).getIndex();
             else if (columnIndex == 1)
                 return dataSheet.getData(rowIndex).getX();
             else if (columnIndex == 2)
