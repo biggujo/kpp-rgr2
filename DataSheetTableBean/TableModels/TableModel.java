@@ -31,11 +31,6 @@ public class TableModel extends AbstractTableModel {
         event = new DataSheetChangeEvent(this);
     }
 
-    public void add(Data data) {
-        this.dataSheet.add(data);
-        rowCount += 1;
-    }
-
     @Override
     public int getRowCount() {
         return rowCount;
@@ -71,7 +66,7 @@ public class TableModel extends AbstractTableModel {
                     dataSheet.getData(rowIndex).setY(d);
                 }
             }
-            
+
             fireDataSheetChange();
         } catch (Exception ex) {
             throw new RuntimeException();
@@ -91,7 +86,7 @@ public class TableModel extends AbstractTableModel {
         return null;
     }
 
-    protected void fireDataSheetChange() {
+    public void fireDataSheetChange() {
         for (DataSheetChangeListener listener : listenerArrayList) {
             listener.dataChanged(event);
         }

@@ -16,15 +16,14 @@ public class TablePanel extends JPanel {
         table.setModel(tableModel);
 
         scrollPanel = new JScrollPane(table);
-
-//        scrollPanel.setHorizontalScrollBarPolicy(
-//                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        scrollPanel.setVerticalScrollBarPolicy(
-//                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
 
     public JScrollPane getScrollPanel() {
         return scrollPanel;
+    }
+
+    public JTable getTable() {
+        return table;
     }
 
     public TableModel getTableModel() {
