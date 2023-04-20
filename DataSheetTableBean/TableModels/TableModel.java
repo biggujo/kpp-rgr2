@@ -2,9 +2,13 @@ package DataSheetTableBean.TableModels;
 
 import DataSheetTableBean.DataSheet.Data;
 import DataSheetTableBean.DataSheet.DataSheet;
+import DataSheetTableBean.Events.DataSheetChangeEvent;
+import DataSheetTableBean.Events.DataSheetChangeListener;
 
 import javax.swing.table.AbstractTableModel;
 import java.io.Serial;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TableModel extends AbstractTableModel {
 
@@ -17,10 +21,14 @@ public class TableModel extends AbstractTableModel {
     private int rowCount;
     private DataSheet dataSheet;
 
+    private ArrayList<DataSheetChangeListener> listenerArrayList = new ArrayList<>();
+    private DataSheetChangeEvent event;
+
     public TableModel() {
         columnCount = 3;
         rowCount = 0;
         dataSheet = new DataSheet();
+        event = new DataSheetChangeEvent(this);
     }
 
     public void add(Data data) {
@@ -63,7 +71,10 @@ public class TableModel extends AbstractTableModel {
                     dataSheet.getData(rowIndex).setY(d);
                 }
             }
+            
+            fireDataSheetChange();
         } catch (Exception ex) {
+            throw new RuntimeException();
         }
     }
 
@@ -80,6 +91,20 @@ public class TableModel extends AbstractTableModel {
         return null;
     }
 
+    protected void fireDataSheetChange() {
+        for (DataSheetChangeListener listener : listenerArrayList) {
+            listener.dataChanged(event);
+        }
+    }
+
+    public void addDataSheetChangeListener(DataSheetChangeListener listener) {
+        listenerArrayList.add(listener);
+    }
+
+    public void removeDataSheetChangeListener(DataSheetChangeListener listener) {
+        listenerArrayList.remove(listener);
+    }
+
     public void setRowCount(int rowCount) {
         if (rowCount > 0) {
             this.rowCount = rowCount;
@@ -93,5 +118,7 @@ public class TableModel extends AbstractTableModel {
     public void setDataSheet(DataSheet dataSheet) {
         this.dataSheet = dataSheet;
         rowCount = this.dataSheet.size();
+
+        fireDataSheetChange();
     }
 }
