@@ -3,6 +3,7 @@ package DataSheetTableBean.Panels;
 import DataSheetTableBean.DataSheet.DataSheetTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TablePanel extends JPanel {
     private final JScrollPane scrollPanel;
@@ -15,6 +16,8 @@ public class TablePanel extends JPanel {
         table.setModel(tableModel);
 
         scrollPanel = new JScrollPane(table);
+
+        scrollPanel.setPreferredSize(new Dimension(200, 250));
     }
 
     public JScrollPane getScrollPanel() {

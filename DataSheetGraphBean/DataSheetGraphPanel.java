@@ -32,6 +32,8 @@ public class DataSheetGraphPanel extends JPanel {
         deltaY = 5;
         color = Color.red;
         this.setSize(400, 400);
+
+        this.setPreferredSize(new Dimension(300, 300));
     }
 
     private double getMinX() {
@@ -150,9 +152,9 @@ public class DataSheetGraphPanel extends JPanel {
 
         // Створюємо лінії сітки
         // Сітка для вісі X
-        float[] dashPattern = {10, 10};
-        gr.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dashPattern, 0));
-        gr.setFont(new Font("Monospace", Font.BOLD, 14));
+        float[] dashPattern = {5, 5};
+        gr.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, dashPattern, 0));
+        gr.setFont(new Font("Monospaced", Font.BOLD, 10));
 
         // Взагалі слід створити метод для обчислення кроку сітки
         double xStep = 1;
@@ -189,13 +191,13 @@ public class DataSheetGraphPanel extends JPanel {
             gr.drawString(Math.round(dy / yStep) * yStep + "", 2, (int) y - 2);
         }
 
-        // Вісі координат
+        // Axis
         gr.setPaint(Color.BLACK);
-        gr.setStroke(new BasicStroke(3.0f));
+        gr.setStroke(new BasicStroke(2.0f));
         gr.draw(new Line2D.Double(x0, 0, x0, height));
         gr.draw(new Line2D.Double(0, y0, width, y0));
-        gr.drawString("X", (int) width - 10, (int) y0 - 2);
-        gr.drawString("Y", (int) x0 + 2, 10);
+        gr.drawString("x", (int) width - 10, (int) y0 - 2);
+        gr.drawString("y", (int) x0 + 2, 10);
 
         // Відображаємо точки, якщо визначено сховище
         if (dataSheet != null) {
@@ -227,5 +229,9 @@ public class DataSheetGraphPanel extends JPanel {
             gr.setStroke(oldStroke);
             gr.setFont(oldFont);
         }
+    }
+
+    public JPanel getPanel() {
+        return this;
     }
 }

@@ -13,15 +13,19 @@ public class DataSheetTablePanel extends JPanel {
     private final JTable table;
     private final DataSheetTableModel tableModel;
 
-    DataSheetTablePanel() {
-        panel = new JPanel(new BorderLayout(1, 1));
+    public DataSheetTablePanel() {
+        panel = new JPanel();
+
+        BoxLayout boxLayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+        panel.setLayout(boxLayout);
+
         TablePanel dataSheetTablePanel = new TablePanel();
         ButtonPanel buttonPanel = new ButtonPanel();
 
         dataSheetTablePanel.revalidate();
 
-        panel.add(buttonPanel.getPanel(), BorderLayout.SOUTH);
-        panel.add(dataSheetTablePanel.getScrollPanel(), BorderLayout.CENTER);
+        panel.add(dataSheetTablePanel.getScrollPanel());
+        panel.add(buttonPanel.getPanel());
 
         table = dataSheetTablePanel.getTable();
         tableModel = dataSheetTablePanel.getTableModel();
@@ -75,17 +79,11 @@ public class DataSheetTablePanel extends JPanel {
         return panel;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame();
+    public JTable getTable() {
+        return table;
+    }
 
-            frame.setSize(300, 400);
-
-            frame.add(new DataSheetTablePanel().getPanel());
-
-            frame.setTitle("Rgr2");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-        });
+    public DataSheetTableModel getTableModel() {
+        return tableModel;
     }
 }

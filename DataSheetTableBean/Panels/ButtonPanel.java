@@ -11,7 +11,7 @@ public class ButtonPanel extends JPanel {
     public ButtonPanel() {
         Font defaultFont = new Font("Courier New", Font.PLAIN, 12);
 
-        panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 10));
+        panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         addButton = new JButton("Add (+)");
         addButton.setFont(defaultFont);
