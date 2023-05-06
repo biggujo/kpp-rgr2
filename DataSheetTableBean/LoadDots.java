@@ -1,7 +1,7 @@
 package DataSheetTableBean;
 
 import DataSheetTableBean.DataSheet.DataSheet;
-import DataSheetTableBean.DataSheet.DataSheetXMLLoader;
+import XML.DataSheetXMLLoader;
 
 public class LoadDots {
     private static final String FILE_NAME_XML = "output.xml";

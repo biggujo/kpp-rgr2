@@ -1,4 +1,4 @@
-package DataSheetTableBean.DataSheet;
+package DataSheetTableBean.Points;
 
 public abstract class Point {
 

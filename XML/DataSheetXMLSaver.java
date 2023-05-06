@@ -1,5 +1,7 @@
-package DataSheetTableBean.DataSheet;
+package XML;
 
+import DataSheetTableBean.DataSheet.Data;
+import DataSheetTableBean.DataSheet.DataSheet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -37,12 +39,8 @@ public class DataSheetXMLSaver {
 
             ArrayList<Data> dataArrayList = dataSheet.getDataArrayList();
             for (Data d : dataArrayList) {
-                Element dataElement = document.createElement("record");
+                Element dataElement = document.createElement("point");
                 outputElement.appendChild(dataElement);
-
-                Element indexElement = document.createElement("index");
-                indexElement.setTextContent(d.getIndex());
-                dataElement.appendChild(indexElement);
 
                 Element coordXElement = document.createElement("x");
                 coordXElement.setTextContent(String.valueOf(d.getX()));

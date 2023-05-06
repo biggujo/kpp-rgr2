@@ -1,18 +1,17 @@
 package DataSheetTableBean.Panels;
 
-import DataSheetTableBean.TableModels.TableModel;
+import DataSheetTableBean.DataSheet.DataSheetTableModel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class TablePanel extends JPanel {
     private final JScrollPane scrollPanel;
     private final JTable table;
-    private TableModel tableModel;
+    private DataSheetTableModel tableModel;
 
     public TablePanel() {
         table = new JTable();
-        tableModel = new TableModel();
+        tableModel = new DataSheetTableModel();
         table.setModel(tableModel);
 
         scrollPanel = new JScrollPane(table);
@@ -26,11 +25,11 @@ public class TablePanel extends JPanel {
         return table;
     }
 
-    public TableModel getTableModel() {
+    public DataSheetTableModel getTableModel() {
         return tableModel;
     }
 
-    public void setTableModel(TableModel dataSheetTableModel) {
+    public void setTableModel(DataSheetTableModel dataSheetTableModel) {
         this.tableModel = dataSheetTableModel;
         table.revalidate();
     }

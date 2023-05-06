@@ -1,29 +1,20 @@
 package DataSheetTableBean.DataSheet;
 
+import DataSheetTableBean.Points.Point2D;
+
 import java.util.Objects;
 
 public class Data implements Comparable {
-    private String index;
     private Point2D point2D;
 
     public Data() {
-        this("", 0, 0);
+        this(0, 0);
     }
 
-    public Data(String index, double x, double y) {
-        this.index = index;
-
+    public Data(double x, double y) {
         this.point2D = new Point2D();
         this.point2D.setX(x);
         this.point2D.setY(y);
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public void setIndex(String index) {
-        this.index = index;
     }
 
     public double getX() {
@@ -47,24 +38,23 @@ public class Data implements Comparable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Data data = (Data) o;
-        return Objects.equals(index, data.index) && Objects.equals(point2D, data.point2D);
+        return Objects.equals(point2D, data.point2D);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, point2D);
+        return Objects.hash(point2D);
     }
 
     @Override
     public int compareTo(Object dataEntity) {
-        return Integer.compare(Integer.parseInt(this.index), Integer.parseInt(((Data) dataEntity).getIndex()));
+        return Double.compare(this.getX(), ((Data) dataEntity).getX());
     }
 
     @Override
     public String toString() {
         return "Data{" +
-                "index='" + index + '\'' +
-                ", point2D=" + point2D +
+                "point2D=" + point2D +
                 '}';
     }
 }

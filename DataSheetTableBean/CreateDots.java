@@ -2,7 +2,7 @@ package DataSheetTableBean;
 
 import DataSheetTableBean.DataSheet.Data;
 import DataSheetTableBean.DataSheet.DataSheet;
-import DataSheetTableBean.DataSheet.DataSheetXMLSaver;
+import XML.DataSheetXMLSaver;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,8 +13,8 @@ public class CreateDots {
     public static void main(String[] args) {
         DataSheet dataSheet = new DataSheet();
 
-        dataSheet.add(new Data("1", 1, 2));
-        dataSheet.add(new Data("2", 2, 3));
+        dataSheet.add(new Data(1, 2));
+        dataSheet.add(new Data(2, 3));
 
         FileOutputStream fileOutputStream;
 

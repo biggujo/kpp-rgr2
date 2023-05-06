@@ -1,5 +1,7 @@
-package DataSheetTableBean.DataSheet;
+package XML;
 
+import DataSheetTableBean.DataSheet.Data;
+import DataSheetTableBean.DataSheet.DataSheet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,9 +17,18 @@ import java.io.IOException;
 public class DataSheetXMLLoader {
     public static DataSheet parseDataSheetFromXML(String filename) {
         DataSheet dataSheet = new DataSheet();
-        Document document = parse(filename);
+        Document document;
+        try {
+            document = parse(filename);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        NodeList rowsElement = document.getElementsByTagName("data");
+        if (document == null) {
+            throw new RuntimeException();
+        }
+
+        NodeList rowsElement = document.getElementsByTagName("point");
 
         for (int i = 0; i < rowsElement.getLength(); i++) {
             Node node = rowsElement.item(i);
@@ -28,11 +39,10 @@ public class DataSheetXMLLoader {
 
             Element nodeAsElement = (Element) node;
 
-            String index = nodeAsElement.getElementsByTagName("index").item(0).getTextContent();
             int x = Integer.parseInt(nodeAsElement.getElementsByTagName("x").item(0).getTextContent());
             int y = Integer.parseInt(nodeAsElement.getElementsByTagName("y").item(0).getTextContent());
 
-            Data data = new Data(index, x, y);
+            Data data = new Data(x, y);
             dataSheet.add(data);
         }
 

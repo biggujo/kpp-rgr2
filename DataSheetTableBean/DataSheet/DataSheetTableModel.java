@@ -1,33 +1,32 @@
-package DataSheetTableBean.TableModels;
+package DataSheetTableBean.DataSheet;
 
-import DataSheetTableBean.DataSheet.Data;
-import DataSheetTableBean.DataSheet.DataSheet;
 import DataSheetTableBean.Events.DataSheetChangeEvent;
 import DataSheetTableBean.Events.DataSheetChangeListener;
 
 import javax.swing.table.AbstractTableModel;
 import java.io.Serial;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class TableModel extends AbstractTableModel {
+public class DataSheetTableModel extends AbstractTableModel {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private static final String[] columnNames = {"Date", "X Value", "Y Value"};
+    private static final String[] columnNames = {"X Value", "Y Value"};
 
     private final int columnCount;
     private int rowCount;
     private DataSheet dataSheet;
 
-    private ArrayList<DataSheetChangeListener> listenerArrayList = new ArrayList<>();
+    private ArrayList<DataSheetChangeListener> listenerArrayList;
     private DataSheetChangeEvent event;
 
-    public TableModel() {
-        columnCount = 3;
+    public DataSheetTableModel() {
+        columnCount = 2;
         rowCount = 0;
         dataSheet = new DataSheet();
+
+        listenerArrayList = new ArrayList<>();
         event = new DataSheetChangeEvent(this);
     }
 
@@ -57,11 +56,9 @@ public class TableModel extends AbstractTableModel {
             double d;
             if (dataSheet != null) {
                 if (columnIndex == 0) {
-                    dataSheet.getData(rowIndex).setIndex((String) value);
-                } else if (columnIndex == 1) {
                     d = Double.parseDouble((String) value);
                     dataSheet.getData(rowIndex).setX(d);
-                } else if (columnIndex == 2) {
+                } else if (columnIndex == 1) {
                     d = Double.parseDouble((String) value);
                     dataSheet.getData(rowIndex).setY(d);
                 }
@@ -77,10 +74,8 @@ public class TableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (dataSheet != null) {
             if (columnIndex == 0)
-                return dataSheet.getData(rowIndex).getIndex();
-            else if (columnIndex == 1)
                 return dataSheet.getData(rowIndex).getX();
-            else if (columnIndex == 2)
+            else if (columnIndex == 1)
                 return dataSheet.getData(rowIndex).getY();
         }
         return null;
