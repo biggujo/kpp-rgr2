@@ -57,6 +57,8 @@ public class MainApplicationFrame extends JFrame {
         panel.add(controlPanel.getPanel(), BorderLayout.SOUTH);
 
         // Action listeners
+
+        // Load table from XML
         controlPanel.getLoadFromXMLButton().addActionListener(e -> {
             if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(null)) {
                 String fileName = fileChooser.getSelectedFile().getPath();
@@ -75,26 +77,7 @@ public class MainApplicationFrame extends JFrame {
             }
         });
 
-        controlPanel.getLoadExampleButton().addActionListener(e -> {
-            clearTable();
-            dataSheet = new DataSheet();
-
-            for (double x = -3; x <= 3; x += 0.5) {
-                dataSheet.add(new Data(x, Math.pow(x, 2) / 2));
-            }
-
-            for (double x = -5; x <= 5; x += 1) {
-                dataSheet.add(new Data(x, x / 2));
-            }
-
-            dataSheetGraph.setDataSheet(dataSheet);
-            dataSheetTable.getTableModel().setDataSheet(dataSheet);
-
-            JOptionPane.showMessageDialog(null,
-                    "Add y = x ^ 2 and y = x / 2", "Example load",
-                    JOptionPane.INFORMATION_MESSAGE);
-        });
-
+        // Save table to XML
         controlPanel.getSaveToXMLButton().addActionListener(e -> {
             if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(null)) {
                 String filename = fileChooser.getSelectedFile().getPath();
@@ -115,6 +98,26 @@ public class MainApplicationFrame extends JFrame {
             }
         });
 
+        // Load example set of dots
+        controlPanel.getLoadExampleButton().addActionListener(e -> {
+            clearTable();
+            dataSheet = new DataSheet();
+
+            // Add some points of y = x ^ 2
+            for (double x = -3; x <= 3; x += 0.5) {
+                dataSheet.add(new Data(x, Math.pow(x, 2) / 2));
+            }
+
+            dataSheetGraph.setDataSheet(dataSheet);
+            dataSheetTable.getTableModel().setDataSheet(dataSheet);
+
+            JOptionPane.showMessageDialog(null,
+                    "Add y = x ^ 2", "Example load",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+
+
+        // Clear table
         controlPanel.getClearTableButton().addActionListener(e -> {
             clearTable();
 
@@ -123,12 +126,14 @@ public class MainApplicationFrame extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
         });
 
+        // Shutdown the application
         controlPanel.getShutdownButton().addActionListener(b -> frame.dispose());
 
+        // Calculate size of window automatically
         frame.pack();
         frame.setResizable(false);
         frame.setTitle("Rgr2");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
