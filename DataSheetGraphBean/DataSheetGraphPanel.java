@@ -245,11 +245,11 @@ public class DataSheetGraphPanel extends JPanel {
 
     private double calcStepX() {
 
-        return Math.ceil(Math.max(1, Math.abs(getMaxX() - getMinX()) / 2));
+        return Math.ceil(Math.max(2, Math.abs(getMaxX() - getMinX()) / 2));
     }
 
     private double calcStepY() {
-        return Math.ceil(Math.max(1, Math.abs(getMaxY() - getMinY()) / 2));
+        return Math.ceil(Math.max(2, Math.abs(getMaxY() - getMinY()) / 2));
     }
 
     public JPanel getPanel() {
