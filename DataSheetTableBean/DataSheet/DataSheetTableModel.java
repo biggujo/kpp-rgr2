@@ -18,8 +18,8 @@ public class DataSheetTableModel extends AbstractTableModel {
     private int rowCount;
     private DataSheet dataSheet;
 
-    private ArrayList<DataSheetChangeListener> listenerArrayList;
-    private DataSheetChangeEvent event;
+    private final ArrayList<DataSheetChangeListener> listenerArrayList;
+    private final DataSheetChangeEvent event;
 
     public DataSheetTableModel() {
         columnCount = 2;

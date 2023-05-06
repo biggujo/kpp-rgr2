@@ -9,6 +9,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serial;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class DataSheetGraphPanel extends JPanel {
 
@@ -41,9 +42,9 @@ public class DataSheetGraphPanel extends JPanel {
             return 0;
         }
 
-        return dataSheet.getDataArrayList().stream()
+        return Objects.requireNonNull(dataSheet.getDataArrayList().stream()
                 .min(Comparator.comparingDouble(Data::getX))
-                .get().getX();
+                .orElse(null)).getX();
     }
 
     private double getMaxX() {
@@ -51,9 +52,9 @@ public class DataSheetGraphPanel extends JPanel {
             return 0;
         }
 
-        return dataSheet.getDataArrayList().stream()
+        return Objects.requireNonNull(dataSheet.getDataArrayList().stream()
                 .max(Comparator.comparingDouble(Data::getX))
-                .get().getX();
+                .orElse(null)).getX();
     }
 
     private double getMinY() {
@@ -61,9 +62,9 @@ public class DataSheetGraphPanel extends JPanel {
             return 0;
         }
 
-        return dataSheet.getDataArrayList().stream()
+        return Objects.requireNonNull(dataSheet.getDataArrayList().stream()
                 .min(Comparator.comparingDouble(Data::getY))
-                .get().getY();
+                .orElse(null)).getY();
     }
 
     private double getMaxY() {
@@ -71,9 +72,9 @@ public class DataSheetGraphPanel extends JPanel {
             return 0;
         }
 
-        return dataSheet.getDataArrayList().stream()
+        return Objects.requireNonNull(dataSheet.getDataArrayList().stream()
                 .max(Comparator.comparingDouble(Data::getY))
-                .get().getY();
+                .orElse(null)).getY();
     }
 
     public DataSheet getDataSheet() {
@@ -231,7 +232,7 @@ public class DataSheetGraphPanel extends JPanel {
             for (int i = 1; i < dataSheet.size(); i++) {
                 double x = x0 + dataSheet.getData(i).getX() * xScale;
                 double y = y0 - dataSheet.getData(i).getY() * yScale;
-                gr.draw(new Line2D.Double(xOld, yOld, (double) x, y));
+                gr.draw(new Line2D.Double(xOld, yOld, x, y));
                 xOld = x;
                 yOld = y;
             }

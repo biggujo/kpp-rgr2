@@ -4,8 +4,8 @@ import DataSheetTableBean.Points.Point2D;
 
 import java.util.Objects;
 
-public class Data implements Comparable {
-    private Point2D point2D;
+public class Data implements Comparable<Object> {
+    private final Point2D point2D;
 
     public Data() {
         this(0, 0);

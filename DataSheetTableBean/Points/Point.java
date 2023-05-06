@@ -2,7 +2,7 @@ package DataSheetTableBean.Points;
 
 public abstract class Point {
 
-    double[] coords;
+    final double[] coords;
 
     public Point(int size) {
         this.coords = new double[size];

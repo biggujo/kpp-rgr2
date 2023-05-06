@@ -56,11 +56,7 @@ public class DataSheetXMLLoader {
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             return db.parse(xmlFile);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
         return null;

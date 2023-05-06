@@ -6,7 +6,6 @@ import DataSheetTableBean.Panels.TablePanel;
 import DataSheetTableBean.DataSheet.DataSheetTableModel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DataSheetTablePanel extends JPanel {
     private final JPanel panel;
