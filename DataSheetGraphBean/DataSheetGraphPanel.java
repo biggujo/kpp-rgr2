@@ -124,12 +124,13 @@ public class DataSheetGraphPanel extends JPanel {
         showGraph(g2);
     }
 
-    // TODO: rewrite
 
     public void showGraph(Graphics2D gr) {
+        // Save width and height
         double width = getWidth();
         double height = getHeight();
 
+        // Get min and max values
         double xMin = getMinX() - deltaX;
         double xMax = getMaxX() + deltaX;
         double yMin = getMinY() - deltaY;
@@ -150,88 +151,109 @@ public class DataSheetGraphPanel extends JPanel {
         Stroke oldStroke = gr.getStroke();
         Font oldFont = gr.getFont();
 
-        // Створюємо лінії сітки
-        // Сітка для вісі X
+        // Create dashes for the field
         float[] dashPattern = {5, 5};
         gr.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, dashPattern, 0));
-        gr.setFont(new Font("Monospaced", Font.BOLD, 10));
+        gr.setFont(new Font("SansSerif", Font.BOLD, 10));
 
-        // Взагалі слід створити метод для обчислення кроку сітки
-        double xStep = 1;
+        // Create X axis layout markup
+        double xStep = calcStepX();
         for (double dx = xStep; dx < xMax; dx += xStep) {
             double x = x0 + dx * xScale;
+
             gr.setPaint(Color.LIGHT_GRAY);
             gr.draw(new Line2D.Double(x, 0, x, height));
+
             gr.setPaint(Color.BLACK);
-            gr.drawString(Math.round(dx / xStep) * xStep + "", (int) x + 2, 10);
+            gr.drawString(String.valueOf(Math.round(dx / xStep) * xStep), (int) x + 2, 10);
         }
         for (double dx = -xStep; dx >= xMin; dx -= xStep) {
             double x = x0 + dx * xScale;
+
             gr.setPaint(Color.LIGHT_GRAY);
             gr.draw(new Line2D.Double(x, 0, x, height));
+
             gr.setPaint(Color.BLACK);
-            gr.drawString(Math.round(dx / xStep) * xStep + "", (int) x + 2, 10);
+            gr.drawString(String.valueOf(Math.round(dx / xStep) * xStep), (int) x + 2, 10);
         }
 
-        // Сітка для вісі Y
-        // Взагалі слід створити метод для обчислення кроку сітки
-        double yStep = 1;
+        // Create Y axis layout markup
+        double yStep = calcStepY();
         for (double dy = yStep; dy < yMax; dy += yStep) {
             double y = y0 - dy * yScale;
+
             gr.setPaint(Color.LIGHT_GRAY);
             gr.draw(new Line2D.Double(0, y, width, y));
+
             gr.setPaint(Color.BLACK);
-            gr.drawString(Math.round(dy / yStep) * yStep + "", 2, (int) y - 2);
-        }
-        for (double dy = -yStep; dy >= yMin; dy -= yStep) {
-            double y = y0 - dy * yScale;
-            gr.setPaint(Color.LIGHT_GRAY);
-            gr.draw(new Line2D.Double(0, y, width, y));
-            gr.setPaint(Color.BLACK);
-            gr.drawString(Math.round(dy / yStep) * yStep + "", 2, (int) y - 2);
+            gr.drawString(String.valueOf(Math.round(dy / yStep) * yStep), 2, (int) y - 2);
         }
 
-        // Axis
+        for (double dy = -yStep; dy >= yMin; dy -= yStep) {
+            double y = y0 - dy * yScale;
+
+            gr.setPaint(Color.LIGHT_GRAY);
+            gr.draw(new Line2D.Double(0, y, width, y));
+
+            gr.setPaint(Color.BLACK);
+            gr.drawString(String.valueOf(Math.round(dy / yStep) * yStep), 2, (int) y - 2);
+        }
+
+        // Create axis
         gr.setPaint(Color.BLACK);
         gr.setStroke(new BasicStroke(2.0f));
+
         gr.draw(new Line2D.Double(x0, 0, x0, height));
         gr.draw(new Line2D.Double(0, y0, width, y0));
+
         gr.drawString("x", (int) width - 10, (int) y0 - 2);
         gr.drawString("y", (int) x0 + 2, 10);
 
-        // Відображаємо точки, якщо визначено сховище
-        if (dataSheet != null) {
-            if (!isConnected) {
-                for (int i = 0; i < dataSheet.size(); i++) {
-                    double x = x0 + (dataSheet.getData(i).getX() * xScale);
-                    double y = y0 - (dataSheet.getData(i).getY() * yScale);
-                    gr.setColor(Color.white);
-                    gr.fillOval((int) (x - 5 / 2), (int) (y - 5 / 2), 5, 5);
-                    gr.setColor(color);
-                    gr.drawOval((int) (x - 5 / 2), (int) (y - 5 / 2), 5, 5);
-                }
-            } else {
-                gr.setPaint(color);
-                gr.setStroke(new BasicStroke(2.0f));
-                double xOld = x0 + dataSheet.getData(0).getX() * xScale;
-                double yOld = y0 - dataSheet.getData(0).getY() * yScale;
-                for (int i = 1; i < dataSheet.size(); i++) {
-                    double x = x0 + dataSheet.getData(i).getX() * xScale;
-                    double y = y0 - dataSheet.getData(i).getY() * yScale;
-                    gr.draw(new Line2D.Double(xOld, yOld, (double) x, y));
-                    xOld = x;
-                    yOld = y;
-                }
-            }
-
-            // Відновляємо вихідні значення
-            gr.setPaint(oldColor);
-            gr.setStroke(oldStroke);
-            gr.setFont(oldFont);
+        // Return if no data storage
+        if (dataSheet == null) {
+            return;
         }
+
+        if (!(dataSheet.size() == 0)) {
+            for (int i = 0; i < dataSheet.size(); i++) {
+                double x = x0 + (dataSheet.getData(i).getX() * xScale);
+                double y = y0 - (dataSheet.getData(i).getY() * yScale);
+                gr.setColor(Color.WHITE);
+                gr.fillOval((int) (x - 5 / 2), (int) (y - 5 / 2), 5, 5);
+                gr.setColor(Color.BLUE);
+                gr.drawOval((int) (x - 5 / 2), (int) (y - 5 / 2), 5, 5);
+            }
+        } else {
+            gr.setPaint(color);
+            gr.setStroke(new BasicStroke(2.0f));
+            double xOld = x0 + dataSheet.getData(0).getX() * xScale;
+            double yOld = y0 - dataSheet.getData(0).getY() * yScale;
+            for (int i = 1; i < dataSheet.size(); i++) {
+                double x = x0 + dataSheet.getData(i).getX() * xScale;
+                double y = y0 - dataSheet.getData(i).getY() * yScale;
+                gr.draw(new Line2D.Double(xOld, yOld, (double) x, y));
+                xOld = x;
+                yOld = y;
+            }
+        }
+
+        // Load previous data
+        gr.setPaint(oldColor);
+        gr.setStroke(oldStroke);
+        gr.setFont(oldFont);
+    }
+
+    private double calcStepX() {
+
+        return Math.ceil(Math.max(1, Math.abs(getMaxX() - getMinX()) / 2));
+    }
+
+    private double calcStepY() {
+        return Math.ceil(Math.max(1, Math.abs(getMaxY() - getMinY()) / 2));
     }
 
     public JPanel getPanel() {
         return this;
     }
+
 }

@@ -4,7 +4,7 @@ import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 
 public class DataSheetGraphTableBeanInfo {
-    private PropertyDescriptor[] propertyDescriptors;
+    private final PropertyDescriptor[] propertyDescriptors;
 
     public DataSheetGraphTableBeanInfo() {
         try {
@@ -13,7 +13,8 @@ public class DataSheetGraphTableBeanInfo {
                             new PropertyDescriptor("filled", DataSheetGraphPanel.class),
                             new PropertyDescriptor("deltaX", DataSheetGraphPanel.class),
                             new PropertyDescriptor("deltaY", DataSheetGraphPanel.class)};
-        } catch (IntrospectionException ignored) {
+        } catch (IntrospectionException e) {
+            throw new RuntimeException(e);
         }
     }
 
