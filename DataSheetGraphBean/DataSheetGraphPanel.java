@@ -10,7 +10,8 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serial;
 import java.util.Comparator;
 
-public class DataSheetGraph extends JPanel {
+public class DataSheetGraphPanel extends JPanel {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +21,7 @@ public class DataSheetGraph extends JPanel {
     private int deltaY;
     transient private Color color;
 
-    public DataSheetGraph() {
+    public DataSheetGraphPanel() {
         super();
         initialize();
     }
@@ -111,6 +112,7 @@ public class DataSheetGraph extends JPanel {
 
     public void setColor(Color color) {
         this.color = color;
+        repaint();
     }
 
     @Override
@@ -123,25 +125,26 @@ public class DataSheetGraph extends JPanel {
     // TODO: rewrite
 
     public void showGraph(Graphics2D gr) {
-        double xMin, xMax, yMin, yMax;
         double width = getWidth();
         double height = getHeight();
 
-        xMin = getMinX() - deltaX;
-        xMax = getMaxX() + deltaX;
-        yMin = getMinY() - deltaY;
-        yMax = getMaxY() + deltaY;
+        double xMin = getMinX() - deltaX;
+        double xMax = getMaxX() + deltaX;
+        double yMin = getMinY() - deltaY;
+        double yMax = getMaxY() + deltaY;
 
-        // Визначаємо коефіцієнти перетворення та положення початку координат
+        // Scale and position of coordinates axis
         double xScale = width / (xMax - xMin);
         double yScale = height / (yMax - yMin);
         double x0 = -xMin * xScale;
         double y0 = yMax * xScale;
 
-        // Заповнюємо область графіка білим кольором
+        // Fill background with white
         Paint oldColor = gr.getPaint();
         gr.setPaint(Color.WHITE);
         gr.fill(new Rectangle2D.Double(0.0, 0.0, width, height));
+
+        // Save some properties
         Stroke oldStroke = gr.getStroke();
         Font oldFont = gr.getFont();
 
@@ -149,7 +152,7 @@ public class DataSheetGraph extends JPanel {
         // Сітка для вісі X
         float[] dashPattern = {10, 10};
         gr.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dashPattern, 0));
-        gr.setFont(new Font("Serif", Font.BOLD, 14));
+        gr.setFont(new Font("Monospace", Font.BOLD, 14));
 
         // Взагалі слід створити метод для обчислення кроку сітки
         double xStep = 1;
@@ -224,12 +227,5 @@ public class DataSheetGraph extends JPanel {
             gr.setStroke(oldStroke);
             gr.setFont(oldFont);
         }
-    }
-
-    public static void main(String[] args) {
-        DataSheetGraph dataSheetGraph = new DataSheetGraph();
-        double minX = dataSheetGraph.getMinX();
-
-        System.out.println();
     }
 }
