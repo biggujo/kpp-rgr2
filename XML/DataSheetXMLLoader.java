@@ -39,8 +39,8 @@ public class DataSheetXMLLoader {
 
             Element nodeAsElement = (Element) node;
 
-            int x = Integer.parseInt(nodeAsElement.getElementsByTagName("x").item(0).getTextContent());
-            int y = Integer.parseInt(nodeAsElement.getElementsByTagName("y").item(0).getTextContent());
+            double x = Double.parseDouble(nodeAsElement.getElementsByTagName("x").item(0).getTextContent());
+            double y = Double.parseDouble(nodeAsElement.getElementsByTagName("y").item(0).getTextContent());
 
             Data data = new Data(x, y);
             dataSheet.add(data);
