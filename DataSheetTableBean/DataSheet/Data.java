@@ -4,7 +4,7 @@ import DataSheetTableBean.Points.Point2D;
 
 import java.util.Objects;
 
-public class Data implements Comparable<Object> {
+public class Data implements Comparable<Data> {
     private final Point2D point2D;
 
     public Data() {
@@ -47,7 +47,7 @@ public class Data implements Comparable<Object> {
     }
 
     @Override
-    public int compareTo(Object dataEntity) {
+    public int compareTo(Data dataEntity) {
         return Double.compare(this.getX(), ((Data) dataEntity).getX());
     }
 
