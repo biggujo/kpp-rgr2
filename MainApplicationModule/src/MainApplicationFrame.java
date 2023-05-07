@@ -127,6 +127,7 @@ public class MainApplicationFrame extends JFrame {
 
         // Calculate size of window automatically
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setTitle("Rgr2");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
