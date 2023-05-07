@@ -1,4 +1,4 @@
-package DataSheetTableBean.DataSheet;
+package DataSheet;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class DataSheet {
             throw new RuntimeException(e);
         }
     }
-    
+
     public void remove(Data data) {
         try {
             dataArrayList.remove(data);

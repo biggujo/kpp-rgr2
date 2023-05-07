@@ -1,4 +1,4 @@
-package DataSheetTableBean.Events;
+package Events;
 
 import java.util.EventListener;
 

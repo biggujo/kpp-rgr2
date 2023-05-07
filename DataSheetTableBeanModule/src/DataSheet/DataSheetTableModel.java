@@ -1,7 +1,7 @@
-package DataSheetTableBean.DataSheet;
+package DataSheet;
 
-import DataSheetTableBean.Events.DataSheetChangeEvent;
-import DataSheetTableBean.Events.DataSheetChangeListener;
+import Events.DataSheetChangeEvent;
+import Events.DataSheetChangeListener;
 
 import javax.swing.table.AbstractTableModel;
 import java.io.Serial;

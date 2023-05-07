@@ -1,7 +1,7 @@
-package DataSheetTableBean.XML;
+package XML;
 
-import DataSheetTableBean.DataSheet.Data;
-import DataSheetTableBean.DataSheet.DataSheet;
+import DataSheet.Data;
+import DataSheet.DataSheet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

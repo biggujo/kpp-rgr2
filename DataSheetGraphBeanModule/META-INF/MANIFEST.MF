@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: DataSheetGraphBean.DataSheetGraphPanel
+Main-Class: DataSheetGraphPanel
 Java-Bean: True
 

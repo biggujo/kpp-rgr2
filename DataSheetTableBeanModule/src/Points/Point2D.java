@@ -1,4 +1,4 @@
-package DataSheetTableBean.Points;
+package Points;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

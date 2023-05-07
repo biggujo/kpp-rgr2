@@ -1,12 +1,8 @@
-package Application;
-
-import Application.Panels.ControlPanel;
-import DataSheetGraphBean.DataSheetGraphPanel;
-import DataSheetTableBean.DataSheet.Data;
-import DataSheetTableBean.DataSheet.DataSheet;
-import DataSheetTableBean.DataSheetTablePanel;
-import DataSheetTableBean.XML.DataSheetXMLLoader;
-import DataSheetTableBean.XML.DataSheetXMLSaver;
+import Panels.ControlPanel;
+import DataSheet.Data;
+import DataSheet.DataSheet;
+import XML.DataSheetXMLLoader;
+import XML.DataSheetXMLSaver;
 
 import javax.swing.*;
 import java.awt.*;

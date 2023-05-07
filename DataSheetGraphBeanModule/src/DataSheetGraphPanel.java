@@ -1,7 +1,5 @@
-package DataSheetGraphBean;
-
-import DataSheetTableBean.DataSheet.Data;
-import DataSheetTableBean.DataSheet.DataSheet;
+import DataSheet.Data;
+import DataSheet.DataSheet;
 
 import javax.swing.*;
 import java.awt.*;
@@ -258,6 +256,6 @@ public class DataSheetGraphPanel extends JPanel {
     }
 
     public static void main(String[] args) {
-        
+
     }
 }

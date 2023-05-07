@@ -1,9 +1,7 @@
-package DataSheetTableBean;
-
-import DataSheetTableBean.DataSheet.Data;
-import DataSheetTableBean.Panels.ButtonPanel;
-import DataSheetTableBean.Panels.TablePanel;
-import DataSheetTableBean.DataSheet.DataSheetTableModel;
+import DataSheet.Data;
+import Panels.ButtonPanel;
+import Panels.TablePanel;
+import DataSheet.DataSheetTableModel;
 
 import javax.swing.*;
 

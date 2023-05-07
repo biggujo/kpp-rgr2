@@ -1,6 +1,6 @@
-package DataSheetTableBean.Panels;
+package Panels;
 
-import DataSheetTableBean.DataSheet.DataSheetTableModel;
+import DataSheet.DataSheetTableModel;
 
 import javax.swing.*;
 import java.awt.*;

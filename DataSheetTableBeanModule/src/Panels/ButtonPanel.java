@@ -1,4 +1,4 @@
-package DataSheetTableBean.Panels;
+package Panels;
 
 import javax.swing.*;
 import java.awt.*;

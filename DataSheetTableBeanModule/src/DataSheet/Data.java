@@ -1,6 +1,6 @@
-package DataSheetTableBean.DataSheet;
+package DataSheet;
 
-import DataSheetTableBean.Points.Point2D;
+import Points.Point2D;
 
 import java.util.Objects;
 
