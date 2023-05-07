@@ -1,4 +1,4 @@
-package XML;
+package DataSheetTableBean.XML;
 
 import DataSheetTableBean.DataSheet.Data;
 import DataSheetTableBean.DataSheet.DataSheet;
