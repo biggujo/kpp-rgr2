@@ -1,7 +1,7 @@
-import DataSheet.Data;
+import Storage.Data;
 import Panels.ButtonPanel;
 import Panels.TablePanel;
-import DataSheet.DataSheetTableModel;
+import Models.DataSheetTableModel;
 
 import javax.swing.*;
 

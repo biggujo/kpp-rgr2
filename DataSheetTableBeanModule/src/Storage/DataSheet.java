@@ -1,8 +1,14 @@
-package DataSheet;
+package Storage;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DataSheet {
+public class DataSheet implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private ArrayList<Data> dataArrayList;
 
     public DataSheet() {

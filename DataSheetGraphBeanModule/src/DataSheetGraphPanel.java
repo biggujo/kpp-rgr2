@@ -1,5 +1,5 @@
-import DataSheet.Data;
-import DataSheet.DataSheet;
+import Storage.Data;
+import Storage.DataSheet;
 
 import javax.swing.*;
 import java.awt.*;

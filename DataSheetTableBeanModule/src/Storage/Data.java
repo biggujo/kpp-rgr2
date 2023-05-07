@@ -1,10 +1,16 @@
-package DataSheet;
+package Storage;
 
 import Points.Point2D;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Data implements Comparable<Data> {
+public class Data implements Comparable<Data>, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private final Point2D point2D;
 
     public Data() {

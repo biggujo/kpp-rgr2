@@ -1,7 +1,7 @@
 package XML;
 
-import DataSheet.Data;
-import DataSheet.DataSheet;
+import Storage.Data;
+import Storage.DataSheet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

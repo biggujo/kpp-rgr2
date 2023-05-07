@@ -1,6 +1,6 @@
 import Panels.ControlPanel;
-import DataSheet.Data;
-import DataSheet.DataSheet;
+import Storage.Data;
+import Storage.DataSheet;
 import XML.DataSheetXMLLoader;
 import XML.DataSheetXMLSaver;
 
