@@ -243,12 +243,19 @@ public class DataSheetGraphPanel extends JPanel {
     }
 
     private double calcStepX() {
+        if (Math.max(Math.abs(getMinX()), Math.abs(getMaxX())) < 1) {
+            return 2;
+        }
 
-        return Math.ceil(Math.max(2, Math.abs(getMaxX() - getMinX()) / 2));
+        return 2 * Math.ceil(Math.log10(Math.max(Math.abs(getMinX()), Math.abs(getMaxX()))));
     }
 
     private double calcStepY() {
-        return Math.ceil(Math.max(2, Math.abs(getMaxY() - getMinY()) / 2));
+        if (Math.max(Math.abs(getMinY()), Math.abs(getMaxY())) == 0) {
+            return 2;
+        }
+
+        return 2 * Math.ceil(Math.log10(Math.max(Math.abs(getMinY()), Math.abs(getMaxY()))));
     }
 
     public JPanel getPanel() {
