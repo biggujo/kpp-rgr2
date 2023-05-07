@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
-Name: test1/PersonBean.class
+Main-Class: Application.Main
 Java-Bean: True
+
