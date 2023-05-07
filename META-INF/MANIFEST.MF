@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Name: test1/PersonBean.class
+Java-Bean: True
