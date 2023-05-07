@@ -5,8 +5,8 @@ import DataSheetGraphBean.DataSheetGraphPanel;
 import DataSheetTableBean.DataSheet.Data;
 import DataSheetTableBean.DataSheet.DataSheet;
 import DataSheetTableBean.DataSheetTablePanel;
-import XML.DataSheetXMLLoader;
-import XML.DataSheetXMLSaver;
+import DataSheetTableBean.XML.DataSheetXMLLoader;
+import DataSheetTableBean.XML.DataSheetXMLSaver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,7 +105,7 @@ public class MainApplicationFrame extends JFrame {
 
             // Add some points of y = x ^ 2
             for (double x = -3; x <= 3; x += 0.5) {
-                dataSheet.add(new Data(x, Math.pow(x, 2) / 2));
+                dataSheet.add(new Data(x, Math.pow(x, 2)));
             }
 
             dataSheetGraph.setDataSheet(dataSheet);
