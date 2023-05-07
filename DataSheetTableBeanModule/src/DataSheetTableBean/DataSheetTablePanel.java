@@ -85,4 +85,8 @@ public class DataSheetTablePanel extends JPanel {
     public DataSheetTableModel getTableModel() {
         return tableModel;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
