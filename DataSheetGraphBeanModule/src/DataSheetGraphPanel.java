@@ -29,7 +29,7 @@ public class DataSheetGraphPanel extends JPanel {
         isConnected = false;
         deltaX = 5;
         deltaY = 5;
-        color = Color.red;
+        color = Color.RED;
         this.setSize(400, 400);
 
         this.setPreferredSize(new Dimension(300, 300));
